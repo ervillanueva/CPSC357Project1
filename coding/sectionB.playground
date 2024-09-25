@@ -1,0 +1,17 @@
+func isBalanced(input: String) -> Bool {
+    var parArray = [Character]() // a stack that is an array that houses the opening parentheses
+    for char in input {
+        if char == "(" { // if the char is an opening parentheses, then add it to the array/ stack
+            parArray.append("(") //adding to array/ stack
+        } else if char == ")" {
+            if parArray.isEmpty {
+                return false // Unmatched closing parenthesis
+            }
+            parArray.popLast() // Match found, remove the last opening parenthesis
+        }
+    }
+    
+    return parArray.isEmpty // If the array is empty, all parentheses are balanced
+}
+
+print(isBalanced(input: "((()))()()"))
