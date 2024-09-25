@@ -1,0 +1,39 @@
+import UIKit
+
+func longestSubsequence(arrayNum: [Int]) -> ([Int], Int) {
+    let array = arrayNum.sorted() //sorting the array
+
+    // Initialize variables to track the longest and current sequences
+    var longestSeq = [Int]()
+    var currSeq = [array[0]]
+    
+    var streak: Int = 1 //the current streak
+    var longestStreak: Int = 1 //the longest streak
+
+    // Loop through the sorted array
+    for i in 0..<array.count - 1 { //iterating through the sorted array, excpect the last element
+        if array[i+1] == array[i] + 1 { // if the next element equals the current element plus one, then it is consecutive
+            streak += 1 //increase the streak
+            currSeq.append(array[i+1]) //append the element to the array that keeps track of the subsequent elements
+        } else if array[i+1] != array[i] {  // if they are not duplicates and not consecutive
+            if streak > longestStreak { // if the current streak is bigger than longestStreak
+                longestStreak = streak // then assign the current length to the longest length
+                longestSeq = currSeq // then assign the current length array to the longest lenghth array
+            }
+            // Reset for the next possible sequence
+            streak = 1
+            currSeq = [array[i+1]]
+        }
+    }
+    // After the loop, check the last streak
+    if streak > longestStreak {
+        longestStreak = streak
+        longestSeq = currSeq
+    }
+    return (longestSeq, longestStreak)
+}
+
+let myArray = [2, 3, 4, 6, 23, 9, 8, 44, 7, 10]
+let result = longestSubsequence(arrayNum: myArray)
+print("\(result.0)")
+print("\(result.1)")
