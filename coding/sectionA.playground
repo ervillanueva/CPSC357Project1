@@ -1,0 +1,21 @@
+func checkingIfPrime(number: Int) -> Bool{
+    //here is the closure
+    let isPrime = { (num: Int) -> Bool in
+        if num <= 1 { // if the number is 0 or 1 then the number is NOT a prime number
+            return false
+        }
+        if num == 2 {// if the number is equal to 2, then the number IS prime
+            return true
+        }
+        for currNum in 2...Int(Double(num).squareRoot()) { //only need to check from 2 to the number that is the square root of the number because it is impossible to times two numbers that are bigger than the square root
+            if num % currNum == 0 {
+                return false // if one of the currNum can divide the number with no remainders then it is not
+            }
+        }
+        return true // if we iterate through all of the numbers and they all leave a remainder, then it is a prime number
+    }
+    let prime = isPrime(number)
+    return prime
+}
+
+print(checkingIfPrime(number: 15))
