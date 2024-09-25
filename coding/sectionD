@@ -1,0 +1,67 @@
+import UIKit
+
+class rockPaperScissors{
+    //Member variables used in the functions
+    var choice: String
+    var computerChoice: Int
+    
+    //the intitializer
+    init(choice: String){
+        self.choice = choice
+        self.computerChoice = Int.random(in: 1...3)
+    }
+    
+    //the function we call to execute who won
+    func whoWon(){
+        var realCompChoice : String = "" //converting the random number into a string to represent the actual choice
+        switch(computerChoice){
+            case 1:
+                realCompChoice = "rock" //one represents rock
+                //print("the computer chose rock") //letting the user know
+            case 2:
+                realCompChoice = "paper" //two represents paper
+                //print("the computer chose paper")
+            default:
+            realCompChoice = "scissors" // two represents scicssors
+                //print("the computer chose scissors")
+            
+        }
+        switch(choice){ //using switch case to represent to compute who won
+            case "rock": //case for user choosing rock
+                if (realCompChoice == "rock"){
+                    print("It's a tie!")
+                }
+                else if(realCompChoice == "paper"){
+                    print("Computer wins!")
+                }
+                else{
+                    print("You win!")
+                }
+            case "paper": //case for user choosing paper
+                if (realCompChoice == "paper"){
+                    print("It's a tie!")
+
+                }
+                else if(realCompChoice == "scissor"){
+                    print("Computer wins!")
+                }
+                else{
+                    print("You win!")
+                }
+            default: //case for user choosing scissor
+                if (realCompChoice == "scissors"){
+                    print("It's a tie!")
+
+                }
+                else if(realCompChoice == "rocks"){
+                    print("Computer wins!")
+                }
+                else{
+                    print("You win!")
+                }
+        }
+    }
+}
+
+let game1 = rockPaperScissors(choice: "rock")
+game1.whoWon()
